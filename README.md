@@ -33,11 +33,11 @@ processing
 После ready изображение обработано
 
 Файлы появятся тут:
-
+```
 storage/
  ├── originals/     # оригинал
  └── processed/     # resized + thumbnail
-
+```
 Использование через API (curl)
 Загрузка изображения
 curl -F "file=@cat.jpg" http://localhost:8080/upload
@@ -72,4 +72,5 @@ storage/processed/
 (в текущей версии)
 
 rm storage/originals/{id}
+
 rm storage/processed/{id}_*.jpg 

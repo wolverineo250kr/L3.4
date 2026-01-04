@@ -1,0 +1,20 @@
+<input type="file" id="file">
+<button onclick="upload()">Upload</button>
+<div id="status"></div>
+
+<script>
+async function upload() {
+  const f = document.getElementById('file').files[0]
+  const fd = new FormData()
+  fd.append('file', f)
+
+  const id = await fetch('/upload', {method:'POST', body:fd}).then(r=>r.text())
+  poll(id)
+}
+
+async function poll(id) {
+  const s = await fetch('/image/'+id).then(r=>r.text())
+  document.getElementById('status').innerText = s
+  if (s !== 'ready') setTimeout(()=>poll(id), 1000)
+}
+</script>
